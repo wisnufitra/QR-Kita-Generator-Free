@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR KITA - Generator QR Code</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔳</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <div class="main-container">
+        <div class="glass-card">
+            <header>
+                <div class="badge">🇮🇩 Karya Anak Bangsa</div>
+                <h1>QR KITA</h1>
+                <p>Alat bantu UMKM & Komunitas. Buat QR Code instan, aman, tanpa iklan.</p>
+            </header>
+
+            <div class="nav-tabs">
+                <button class="tab-item active" onclick="setMode('link')">
+                    <i class="fas fa-link"></i> Link
+                </button>
+                <button class="tab-item" onclick="setMode('wifi')">
+                    <i class="fas fa-wifi"></i> WiFi
+                </button>
+                <button class="tab-item" onclick="setMode('wa')">
+                    <i class="fab fa-whatsapp"></i> WA
+                </button>
+            </div>
+
+            <div class="input-area">
+                
+                <div id="input-link" class="input-group">
+                    <label>Tautan Website / Google Maps</label>
+                    <input type="text" id="val-link" placeholder="https://..." autocomplete="off">
+                </div>
+
+                <div id="input-wifi" class="input-group hidden">
+                    <label>Nama WiFi (SSID)</label>
+                    <input type="text" id="val-wifi-ssid" placeholder="Contoh: Kopi Kenangan Free">
+                    
+                    <label>Password</label>
+                    <div class="password-wrapper">
+                        <input type="text" id="val-wifi-pass" placeholder="Password WiFi">
+                    </div>
+                    <small>Huruf besar/kecil berpengaruh.</small>
+                </div>
+
+                <div id="input-wa" class="input-group hidden">
+                    <label>Nomor WhatsApp</label>
+                    <div class="phone-input">
+                        <span>+62</span>
+                        <input type="number" id="val-wa-num" placeholder="8123456789">
+                    </div>
+                    
+                    <label>Pesan Otomatis (Opsional)</label>
+                    <textarea id="val-wa-msg" rows="2" placeholder="Halo, saya mau pesan..."></textarea>
+                </div>
+
+                <div class="advanced-options">
+                    <div class="color-picker">
+                        <label>Warna QR</label>
+                        <input type="color" id="color-fg" value="#1f2937">
+                    </div>
+                    <div class="color-picker">
+                        <label>Latar</label>
+                        <input type="color" id="color-bg" value="#ffffff">
+                    </div>
+                </div>
+
+                <button class="btn-generate" onclick="generateQR()">
+                    <i class="fas fa-qrcode"></i> Buat QR Code
+                </button>
+            </div>
+        </div>
+
+        <div class="result-card glass-card">
+            <div class="qr-placeholder" id="placeholder-view">
+                <i class="fas fa-arrow-left arrow-indicator"></i>
+                <p>Isi data di samping untuk melihat hasil.</p>
+            </div>
+
+            <div class="qr-final hidden" id="result-view">
+                <div id="qr-canvas"></div>
+                <p class="scan-me">Scan Me</p>
+                
+                <div class="action-buttons">
+                    <button class="btn-download" onclick="downloadQR()">
+                        <i class="fas fa-download"></i> Simpan (PNG)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="simple-footer">
+        Dibuat untuk Indonesia 🇮🇩 | Hosted on Firebase | WFR
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
